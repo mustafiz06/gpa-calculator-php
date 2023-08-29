@@ -39,10 +39,10 @@
         <div class="calc_container">
             <h2 style="text-align:center;">GPA Calculator</h2>
             <form action="" method="POST">
-                <input type="number" id="html" name="html" placeholder="html" required>
-                <input type="number" id="css" name="css" placeholder="css" required>
-                <input type="number" id="js" name="js" placeholder="js" required>
-                <input type="number" id="php" name="php" placeholder="php" required>
+                <input type="text" id="html" name="html" placeholder="html" required>
+                <input type="text" id="css" name="css" placeholder="css" required>
+                <input type="text" id="js" name="js" placeholder="js" required>
+                <input type="text" id="php" name="php" placeholder="php" required>
                 <button type="submit" style="width: 100px; height:30px;">Calculate</button>
             </form>
         </div>
@@ -52,16 +52,17 @@
 </html>
 
 <?php
-$html = $_POST['html'];
-$css = $_POST['css'];
-$js = $_POST['js'];
-$php = $_POST['php'];
+
+$html = @$_POST['html'];
+$css = @$_POST['css'];
+$js = @$_POST['js'];
+$php = @$_POST['php'];
 $total = $html + $css + $js + $php;
 $average = $total / 4;
 $grade = NULL;
 
 if ($average > 100 || $average < 0) {
-    echo "<h1 style='color: red; text-align:center;'>You enter invalid mark</h1>";
+    echo "<h1 style='color: tomato; text-align:center;'>You enter an invalid mark.</h1>";
 } else if ($average >= 80) {
     $grade = "A+";
 } else if ($average >= 70 && $average < 80) {
@@ -72,9 +73,14 @@ if ($average > 100 || $average < 0) {
     $grade = "B";
 } else if ($average >= 40 && $average < 50) {
     $grade = "C";
-} else {
+} else if ($average <= 40 && $average >= 0 ) {
     echo "<h1 style='color: red; text-align:center;'>You are failed. You need to study more.</h1>";
+} 
+else {
+    echo "NULL";
 }
+
+
 if ($grade !== NULL) {
     echo "<h1 style='color: green; text-align:center;'>Congratulation!! You got  $grade</h1>";
 } else {
@@ -83,9 +89,10 @@ if ($grade !== NULL) {
 
 // GPA Calculation.................
 //html
- if ($html >= 80) {
+if ($html >= 80) {
     $html_gpa = "5.00";
-} else if ($html >= 70 && $html < 80) {
+} 
+else if ($html >= 70 && $html < 80) {
     $html_gpa = "4.50";
 } else if ($html >= 60 && $html < 70) {
     $html_gpa = "4.00";
@@ -98,7 +105,7 @@ if ($grade !== NULL) {
 }
 
 //css
- if ($css >= 80) {
+if ($css >= 80) {
     $css_gpa = "5.00";
 } else if ($css >= 70 && $css < 80) {
     $css_gpa = "4.50";
@@ -113,7 +120,7 @@ if ($grade !== NULL) {
 }
 
 //JS
- if ($js >= 80) {
+if ($js >= 80) {
     $js_gpa = "5.00";
 } else if ($js >= 70 && $js < 80) {
     $js_gpa = "4.50";
@@ -128,7 +135,7 @@ if ($grade !== NULL) {
 }
 
 //PHP
- if ($php >= 80) {
+if ($php >= 80) {
     $php_gpa = "5.00";
 } else if ($php >= 70 && $php < 80) {
     $php_gpa = "4.50";
@@ -152,10 +159,9 @@ if ($average > 100 || $average < 0) {
 // elseif($grade != "A+" || $grade = "A" || $grade = "A-" || $grade = "B" || $grade = "C"){
 //     echo NULL;
 // }
-elseif($average_gpa <= "3.00"){
+elseif ($average_gpa < "3.00") {
     echo NULL;
-}
-else{
+} else {
     echo "<h1 style='color: green; text-align:center;'>Your GPA is $average_gpa</h1>";
 }
 
