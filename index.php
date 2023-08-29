@@ -149,6 +149,12 @@ $average_gpa = $total_gpa / 4;
 if ($average > 100 || $average < 0) {
     echo NULL;
 }
+// elseif($grade != "A+" || $grade = "A" || $grade = "A-" || $grade = "B" || $grade = "C"){
+//     echo NULL;
+// }
+elseif($average_gpa <= "3.00"){
+    echo NULL;
+}
 else{
     echo "<h1 style='color: green; text-align:center;'>Your GPA is $average_gpa</h1>";
 }
